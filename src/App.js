@@ -34,14 +34,10 @@ class App extends Component {
 
   updateTodo(i) {
     const arrTodos = this.state.todos;
-    console.log(arrTodos[i]);
-
     this.setState({
       edittedState: arrTodos[i],
       onUpdate: true
     });
-
-    console.log("update to do", this.state, i);
   }
 
   handleAddTodo(todo) {

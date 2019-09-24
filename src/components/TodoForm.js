@@ -8,11 +8,7 @@ class TodoForm extends Component {
       responsible: "",
       description: "",
       priority: "low",
-      onEdit: "",
-      nweTitle: "",
-      nweResponsible: "",
-      nweDescription: "",
-      nwePriority: ""
+      onEdit: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,16 +42,21 @@ class TodoForm extends Component {
     });
   }
 
-  handleInputEdit(event, prevProps) {
-    console.log("Update");
-
+  handleInputEdit(event) {
     this.setState({
       onUpdate: false
     });
+  }
 
-    // if (this.props.title !== prevProps.title) {
-    //   this.onUpdate(this.props.title);
-    // }
+  componentDidUpdate(prevProps) {
+    if (this.props.updateTodo.title !== prevProps.updateTodo.title) {
+      this.setState({
+        title: this.props.updateTodo.title,
+        responsible: this.props.updateTodo.responsible,
+        description: this.props.updateTodo.description,
+        priority: this.props.updateTodo.priority
+      });
+    }
   }
 
   render() {
@@ -67,11 +68,7 @@ class TodoForm extends Component {
               type="text"
               name="title"
               className="form-control"
-              value={
-                this.props.onUpdate
-                  ? this.props.updateTodo.title
-                  : this.state.title
-              }
+              value={this.state.title}
               onChange={this.handleInputChange}
               placeholder="Title"
             />
@@ -81,11 +78,7 @@ class TodoForm extends Component {
               type="text"
               name="responsible"
               className="form-control"
-              value={
-                this.props.onUpdate
-                  ? this.props.updateTodo.responsible
-                  : this.state.responsible
-              }
+              value={this.state.responsible}
               onChange={this.handleInputChange}
               placeholder="Responsible"
             />
@@ -95,12 +88,8 @@ class TodoForm extends Component {
               type="text"
               name="description"
               className="form-control"
-              value={
-                this.props.onUpdate
-                  ? this.props.updateTodo.description
-                  : this.state.description
-              }
-              onChange={this.handleInputEdit}
+              value={this.state.description}
+              onChange={this.handleInputChange}
               placeholder="Description"
             />
           </div>
@@ -108,11 +97,7 @@ class TodoForm extends Component {
             <select
               name="priority"
               className="form-control"
-              value={
-                this.props.onUpdate
-                  ? this.props.updateTodo.priority
-                  : this.state.priority
-              }
+              value={this.state.priority}
               onChange={this.handleInputChange}
             >
               <option>low</option>
