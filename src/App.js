@@ -14,11 +14,7 @@ class App extends Component {
     this.state = {
       todos,
       onUpdate: false,
-      edittedState: {},
-      newTitle: "",
-      newResponsible: "",
-      newDescription: "",
-      newPriority: ""
+      edittedState: {}
     };
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
