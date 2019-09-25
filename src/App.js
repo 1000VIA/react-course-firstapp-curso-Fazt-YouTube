@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       todos,
       onUpdate: false,
-      edittedState: {}
+      edittedState: {},
+      editIndexTodo: -1
     };
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
@@ -31,15 +32,25 @@ class App extends Component {
   updateTodo(i) {
     const arrTodos = this.state.todos;
     this.setState({
+      editIndexTodo: i,
       edittedState: arrTodos[i],
       onUpdate: true
     });
   }
 
   handleAddTodo(todo) {
-    this.setState({
-      todos: [...this.state.todos, todo]
-    });
+    if (this.state.editIndexTodo < 0) {
+      this.setState({
+        todos: [...this.state.todos, todo]
+      });
+    } else {
+      const todos = [...this.state.todos];
+      todos[this.state.editIndexTodo] = todo;
+      this.setState({
+        todos,
+        editIndexTodo: -1
+      });
+    }
   }
 
   render() {
