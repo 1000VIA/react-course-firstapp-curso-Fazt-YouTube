@@ -106,7 +106,7 @@ class TodoForm extends Component {
             </select>
           </div>
           <button type="submit" className="btn btn-primary">
-            Save
+            {this.props.editIndexTodo === -1 ? "Save" : "Edit"}
           </button>
         </form>
       </div>

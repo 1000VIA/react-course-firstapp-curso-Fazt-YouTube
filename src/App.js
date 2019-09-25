@@ -106,6 +106,7 @@ class App extends Component {
             <div className="col-md-4 text-center">
               <img src={logo} className="App-logo" alt="logo" />
               <TodoForm
+                editIndexTodo={this.state.editIndexTodo}
                 updateTodo={this.state.edittedState}
                 onAddTodo={this.handleAddTodo}
                 onUpdate={this.state.onUpdate}
